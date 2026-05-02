@@ -12,6 +12,7 @@ const state = {
 const menuScreen = document.getElementById("menuScreen");
 const gameScreen = document.getElementById("gameScreen");
 const playerCountInput = document.getElementById("playerCount");
+const playerNamesInput = document.getElementById("playerNames");
 const caseInput = document.getElementById("caseInput");
 const selectedCaseText = document.getElementById("selectedCaseText");
 const caseList = document.getElementById("caseList");
@@ -91,11 +92,31 @@ function startGame() {
     alert("Oyuncu sayisi 3-12 arasinda olmali.");
     return;
   }
-  state.players = Array.from({ length: count }, (_, i) => `Oyuncu ${i + 1}`);
+  const rawNames = playerNamesInput.value
+    .split(",")
+    .map((name) => name.trim())
+    .filter(Boolean);
+  const uniqueNames = [...new Set(rawNames)];
+  if (uniqueNames.length !== count) {
+    alert("Oyuncu sayisi kadar benzersiz isim gir. Isimleri virgulle ayir.");
+    return;
+  }
+
+  state.players = uniqueNames;
+  state.cases = [];
+  state.selectedCase = "";
+  state.roles = [];
+  state.objections = 0;
+  state.supports = 0;
   state.gameStarted = true;
   menuScreen.classList.add("hidden");
   gameScreen.classList.remove("hidden");
-  notify(`Oyun basladi. ${count} oyuncu hazir.`);
+  renderCases();
+  renderRoles();
+  updateScore();
+  selectedCaseText.textContent = "Herkes once bir suc yazsin. Sonra rastgele biri secilecek.";
+  courtStatus.textContent = "Durusma baslamayi bekliyor.";
+  notify(`Oyun basladi. Oyuncular: ${state.players.join(", ")}`);
 }
 
 function addCase() {
@@ -168,7 +189,7 @@ function endGame() {
   state.gameStarted = false;
   menuScreen.classList.remove("hidden");
   gameScreen.classList.add("hidden");
-  notify("Oyun kapatildi. Yeni oyun icin menuden baslat.");
+  eventLog.innerHTML = "";
 }
 
 function toggleSound() {

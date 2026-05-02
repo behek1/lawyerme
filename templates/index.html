@@ -18,6 +18,14 @@
           <input id="playerCount" type="number" min="3" max="12" value="6" />
         </div>
         <div class="row">
+          <label for="playerNames">Oyuncu isimleri (virgulle ayir)</label>
+          <textarea
+            id="playerNames"
+            rows="3"
+            placeholder="Orn: Ali, Zeynep, Mert, Elif, Arda, Mina"
+          ></textarea>
+        </div>
+        <div class="row">
           <button id="startGameBtn">Oyunu Baslat</button>
           <button id="soundToggleBtn" class="secondary">Sesi Kapat</button>
         </div>
@@ -34,53 +42,55 @@
           </p>
         </header>
 
-        <section class="card">
-          <h3>1) Suclar</h3>
-          <p class="muted">Her oyuncu bir mahkeme sucu yazsin, listeden rastgele secilsin.</p>
-          <div class="row">
-            <input id="caseInput" type="text" placeholder="Orn: Komsunun arabasina zarar verme iddiasi" />
-            <button id="addCaseBtn">Sucu Ekle</button>
-            <button id="pickCaseBtn" class="secondary">Rastgele Sec</button>
-          </div>
-          <ul id="caseList"></ul>
-        </section>
+        <div class="game-grid">
+          <section class="card panel">
+            <h3>1) Suclar</h3>
+            <p class="muted">Her oyuncu bir mahkeme sucu yazsin, listeden rastgele secilsin.</p>
+            <div class="row">
+              <input id="caseInput" type="text" placeholder="Orn: Komsunun arabasina zarar verme iddiasi" />
+              <button id="addCaseBtn">Sucu Ekle</button>
+              <button id="pickCaseBtn" class="secondary">Rastgele Sec</button>
+            </div>
+            <ul id="caseList"></ul>
+          </section>
 
-        <section class="card">
-          <h3>2) Roller</h3>
-          <p class="muted">Her yeni dava icin roller yeniden dagitilir.</p>
-          <div class="row">
-            <button id="assignRolesBtn">Rolleri Dagit</button>
-          </div>
-          <div id="rolesBoard" class="roles-board"></div>
-        </section>
+          <section class="card panel">
+            <h3>2) Roller</h3>
+            <p class="muted">Her yeni dava icin roller yeniden dagitilir.</p>
+            <div class="row">
+              <button id="assignRolesBtn">Rolleri Dagit</button>
+            </div>
+            <div id="rolesBoard" class="roles-board"></div>
+          </section>
 
-        <section class="card">
-          <h3>3) Duruşma</h3>
-          <div class="actions">
-            <button id="objectionBtn">Itiraz Et!</button>
-            <button id="supportBtn" class="secondary">Karari Destekle</button>
-          </div>
-          <p id="courtStatus">Durusma baslamayi bekliyor.</p>
-        </section>
+          <section class="card panel">
+            <h3>3) Durusma</h3>
+            <div class="actions">
+              <button id="objectionBtn">Itiraz Et!</button>
+              <button id="supportBtn" class="secondary">Karari Destekle</button>
+            </div>
+            <p id="courtStatus">Durusma baslamayi bekliyor.</p>
+          </section>
 
-        <section class="card">
-          <h3>4) Karar Aciklama</h3>
-          <textarea
-            id="decisionInput"
-            rows="4"
-            placeholder="Hakim kararini ve gerekcesini yazsin..."
-          ></textarea>
-          <div class="row">
-            <button id="announceBtn">Karari Acikla</button>
-            <button id="newRoundBtn" class="secondary">Yeni Tur</button>
-          </div>
-        </section>
+          <section class="card panel">
+            <h3>4) Karar Aciklama</h3>
+            <textarea
+              id="decisionInput"
+              rows="4"
+              placeholder="Hakim kararini ve gerekcesini yazsin..."
+            ></textarea>
+            <div class="row">
+              <button id="announceBtn">Karari Acikla</button>
+              <button id="newRoundBtn" class="secondary">Yeni Tur</button>
+            </div>
+          </section>
 
-        <section class="card">
-          <h3>Skor / Olay Gecmisi</h3>
-          <p id="scoreBoard"></p>
-          <ul id="eventLog"></ul>
-        </section>
+          <section class="card panel panel-wide">
+            <h3>Skor / Olay Gecmisi</h3>
+            <p id="scoreBoard"></p>
+            <ul id="eventLog"></ul>
+          </section>
+        </div>
       </section>
     </main>
 
